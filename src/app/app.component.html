@@ -8,7 +8,7 @@
       </li>
   </ul>
   <!-- @if(selectedUser) -->
-    <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser!.name"></app-tasks>
+    <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser!.name" [userId]="selectedUser!.id"></app-tasks>
     <ng-template #fallback>
       <p id="fallback">Select a User</p>
     </ng-template>
