@@ -1,0 +1,14 @@
+<section id="tasks">
+  <header>
+    <h2>{{name}}'s Tasks</h2>
+    <menu>
+      <button>Add Tasks</button>
+    </menu>
+  </header>
+  <ul>
+    <li *ngFor="let task of tasks">
+      <app-task [title]="task.title" [time]="task.dueDate" [summary]="task.summary"></app-task>
+    </li>
+  </ul>
+</section>
+
