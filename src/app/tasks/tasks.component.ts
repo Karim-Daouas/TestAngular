@@ -1,9 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { TaskComponent } from "./task/task.component";
-import {dummyTasks} from "./dummy-tasks";
 import { NewTaskComponent } from './new-task/new-task.component';
-import { NewTask } from './task/task.model';
+import { TasksService } from './tasks.service';
 
 
 @Component({
@@ -16,28 +15,18 @@ import { NewTask } from './task/task.model';
 export class TasksComponent {
   @Input({required:true}) userId!:string;
   @Input({required:true}) name!:string;
-  tasks = dummyTasks;
+  
+  constructor(private tasksService: TasksService){};
+
   isAddingtask = false;
+
   get selectedUserTasks(){
-    return this.tasks.filter((task)=> this.userId === task.userId);
-  }
-  onComplete(id:string){
-    this.tasks = this.tasks.filter((task)=> task.id !== id);
+    return this.tasksService.getUserTasks(this.userId);
   }
   onClose(){
     this.isAddingtask = false;
   }
   onStartAddTask(){
     this.isAddingtask = true;
-  }
-  onAddtask(task: NewTask){
-    this.tasks.unshift({
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      title: task.title,
-      summary:task.summary,
-      dueDate: task.dueDate
-    })
-    this.isAddingtask = false;
   }
 }
