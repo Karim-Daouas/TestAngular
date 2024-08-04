@@ -1,21 +1,11 @@
 import { Component, Input, Output, EventEmitter, input, output, computed } from '@angular/core';
-
-// type User = {
-//   id: string,
-//   name: string,
-//   avatar: string
-// };
-interface User  
-{
-  id: string,
-  name: string,
-  avatar: string
-};
+import {type User} from './user.model'
+import { CardComponent } from '../shared/card/card.component';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
@@ -23,6 +13,7 @@ interface User
 //Input
 export class UserComponent {
   @Input({required:true}) user!: User;
+  @Input({required:true}) selected!: boolean;
   @Output() select = new EventEmitter<string>();
   get imagePath(){
     return './assets/users/'+ this.user.avatar;

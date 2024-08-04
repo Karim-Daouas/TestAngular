@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserComponent } from './user.component';
+import { CardComponent } from '../shared/card/card.component';
 
 describe('UserComponent', () => {
   let component: UserComponent;
